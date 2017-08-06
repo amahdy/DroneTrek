@@ -9,7 +9,7 @@
  * @version $Id: GoToLocation.js 3320 2015-07-15 20:53:05Z dcollins $
  */
 
-requirejs(['./src/WorldWind',
+requirejs(['./ww/WorldWind',
         './js/LayerManager'],
     function (ww,
               LayerManager) {
