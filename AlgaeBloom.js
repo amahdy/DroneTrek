@@ -74,7 +74,7 @@ requirejs(['./ww/worldwind',
         // Listen for taps on mobile devices.
         var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
 
-        var addMark = function(img, latitude, longitude) {
+        var addMark = function(img, latitude, longitude, evtDate) {
           var image = WorldWind.configuration.baseUrl + "images/" + img,
               placemark,
               placemarkAttributes = new WorldWind.PlacemarkAttributes(null),
@@ -96,9 +96,13 @@ requirejs(['./ww/worldwind',
 
           // Create the placemark and its label.
           placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 1e2), true, null);
-          placemark.label = "" //"Placemark\n"
-          + "Lat " + placemark.position.latitude.toPrecision(4).toString() + "\n"
-          + "Lon " + placemark.position.longitude.toPrecision(5).toString();
+          if(evtDate) {
+            placemark.label = evtDate;
+          }else {
+            placemark.label = "" //"Placemark\n"
+            + "Lat " + placemark.position.latitude.toPrecision(4).toString() + "\n"
+            + "Lon " + placemark.position.longitude.toPrecision(5).toString();
+          }
           placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
           // Create the placemark attributes for this placemark. Note that the attributes differ only by their
@@ -121,19 +125,19 @@ requirejs(['./ww/worldwind',
           wwd.addLayer(placemarkLayer);
         };
 
-        addMark("circle_blue.png", 60.312605, 25.114182);
-        addMark("circle_blue.png", 60.748926, 25.444442);
+        addMark("circle_blue.png", 60.312605, 25.114182, "28.08.17");
+        addMark("circle_blue.png", 60.748926, 25.444442, "21.07.17");
 
-        addMark("circle_red.png", 60.192450, 25.839858);
-        addMark("circle_red.png", 60.311735, 25.693394);
+        addMark("circle_red.png", 60.192450, 25.839858, "05.06.17");
+        addMark("circle_red.png", 60.311735, 25.693394, "12.06.17");
 
-        addMark("circle_green.png", 60.341117, 25.361805);
-        addMark("circle_green.png", 60.305427, 25.346740);
-        addMark("circle_green.png", 60.429256, 25.986533);
+        addMark("circle_green.png", 60.341117, 25.361805, "08.06.17");
+        addMark("circle_green.png", 60.305427, 25.346740, "18.05.17");
+        addMark("circle_green.png", 60.429256, 25.986533, "15.08.17");
 
-        addMark("circle_orange.png", 60.361555, 25.333862);
-        addMark("circle_orange.png", 60.740223, 25.593210);
-        addMark("circle_orange.png", 60.436310, 25.054487);
-        addMark("circle_orange.png", 60.451013, 25.052212);
-        addMark("circle_orange.png", 60.462769, 25.081884);
+        addMark("circle_orange.png", 60.361555, 25.333862, "04.07.17");
+        addMark("circle_orange.png", 60.740223, 25.593210, "07.08.17");
+        addMark("circle_orange.png", 60.436310, 25.054487, "31.07.17");
+        addMark("circle_orange.png", 60.451013, 25.052212, "23.07.17");
+        addMark("circle_orange.png", 60.462769, 25.081884, "02.07.17");
     });
